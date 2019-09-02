@@ -25,5 +25,8 @@
   "homepage": "https://github.com/alexsophiekim/GRUD#readme",
   "devDependencies": {
     "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "grunt": "^1.0.4"
   }
 }
