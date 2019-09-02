@@ -1,0 +1,29 @@
+{
+  "name": "grud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexsophiekim/GRUD.git"
+  },
+  "keywords": [
+    "javascript",
+    "node.js",
+    "grunt",
+    "mongoDB",
+    "ajax"
+  ],
+  "author": "Larissa,Matt,Sophie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexsophiekim/GRUD/issues"
+  },
+  "homepage": "https://github.com/alexsophiekim/GRUD#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
