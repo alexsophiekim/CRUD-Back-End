@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/alexsophiekim/GRUD#readme",
   "devDependencies": {
-    "grunt-contrib-jshint": "^2.1.0",
     "nodemon": "^1.19.1"
   }
 }
