@@ -18,8 +18,13 @@ app.get('/',function(req,res){
     res.send('Welcome! This is our portfolio.');
 });
 
+app.get('/view',function(req,res){
+    res.send('Welcome! This is Read endpoint.');
+});
 
-
+app.delete('/view/:id',function(req,res){
+    res.send('Welcome! This is delete endpoint.');
+});
 
 // Sophie works above this line, larissa works below below this line
 
