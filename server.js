@@ -16,6 +16,11 @@ db.once('open', function() {
 });
 
 
+
+// Sophie works above this line, larissa works below below this line
+
+
+
 // Listen to port 3000
 app.listen(port, () => {
     console.clear();
