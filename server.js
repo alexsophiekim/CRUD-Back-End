@@ -28,6 +28,13 @@ app.delete('/view/:id',function(req,res){
 
 // Sophie works above this line, larissa works below below this line
 
+app.get('/add',function(req,res){
+    res.send('Welcome! This is our Create endpoint');
+});
+
+app.get('/update',function(req,res){
+    res.send('Welcome! This is our Update endpoint.');
+});
 
 
 // Listen to port 3000
