@@ -18,7 +18,21 @@ app.get('/',function(req,res){
     res.send('Welcome! This is our portfolio.');
 });
 
-app.get('/view',function(req,res){
+app.post('/view',function(req,res){
+  const work = new Work({
+    _id: new mongoose.Types.ObjectId(),
+    workName: req.body.workName,
+    workAuthor: req.body.workAuthor,
+    workImg: req.body.workImg,
+    authorURL: req.body.authorURL
+  });
+  console.log(work);
+  work.save().then(result => {
+      res.send(result)
+  }).catch(err => res.send(err))
+});
+
+app.get('/viewAll',function(req,res){
     res.send('Welcome! This is Read endpoint.');
 });
 
