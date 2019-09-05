@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const config = require('./config.json');
 const Work = require('./models/work');
+const User = require('./models/users');
 
 mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@sophiecluster-lhxyp.mongodb.net/work?retryWrites=true&w=majority`, {useNewUrlParser: true});
 var db = mongoose.connection;
@@ -40,7 +41,7 @@ app.post('/add', function(req,res){
     authorURL: req.body.authorURL
   });
 
-    res.send(workItem);
+    res.send(work);
 });
 
 app.post('/view',function(req,res){
