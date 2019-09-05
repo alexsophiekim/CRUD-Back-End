@@ -30,6 +30,7 @@ app.get('/',function(req,res){
 });
 
 app.post('/add', function(req,res){
+  console.log('gottem');
   const workItem = new Work({
     id: mongoose.Types.ObjectId(),
     workName: req.body.workName,
@@ -37,10 +38,10 @@ app.post('/add', function(req,res){
     workImg: req.body.workImg,
     authorURL: req.body.authorURL
   });
-
-  workItem.save().then(result => {
-    res.send(result);
-  }).catch(err => res.send(err));
+    res.send(workItem);
+  // workItem.save().then(result => {
+  //   res.send(result);
+  // }).catch(err => res.send(err));
 });
 
 app.get('/view',function(req,res){
