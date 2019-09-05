@@ -33,6 +33,7 @@ app.get('/',function(req,res){
 
 
 app.post('/add', function(req,res){
+  console.log('working');
   const work = new Work({
     _id: new mongoose.Types.ObjectId(),
     workName: req.body.workName,
@@ -41,33 +42,30 @@ app.post('/add', function(req,res){
     authorURL: req.body.authorURL
   });
 
-    res.send(work);
-});
-
-app.post('/view',function(req,res){
-  workItem.save().then(result => {
+  work.save().then(result => {
     res.send(result);
   }).catch(err => res.send(err));
 });
 
+
 app.get('/view',function(req,res){
-  work.save().then(result => {
-      res.send(result)
-  }).catch(err => res.send(err))
+  Work.find().then(result => {
+    res.send(result);
+  })
 });
 
-app.get('/viewAll',function(req,res){
-    res.send('Welcome! This is Read endpoint.');
+app.delete('/view/:workName',function(req,res){
+  const workName = req.params.workName;
+  Work.findById(id, function(err, product){
+      if(work['workName'] == req.body.workName){
+          Work.deleteOne({ _id: id }, function (err) {
+              res.send('deleted');
+          });
+      } else {
+          res.send('401');
+      }
+  }).catch(err => res.send('cannot find product with that id'));
 });
-
-app.delete('/view/:id',function(req,res){
-    res.send('Welcome! This is delete endpoint.');
-});
-
-app.get('/update',function(req,res){
-    res.send('Welcome! This is our Update endpoint.');
-});
-
 
 app.post('/users',function(req,res){
   User.findOne({ username:req.body.username}, function(err, result){
@@ -88,12 +86,12 @@ app.post('/users',function(req,res){
   })
 })
 
-app.post('/getUser', function(req,res){
+app.get('/getUser', function(req,res){
   const username = req.body.username;
   const password = req.body.password;
-  User.findOne({ username: username}, function(err, result){
+  User.findOne({ username: username}, function(err, checkUser){
     if (checkUser) {
-        if (bcrypt.compareSync(password,checkUser.password)) {
+        if (bcrypt.compareSync(req.body.password,checkUser.password)) {
           console.log('password matched');
           res.send(checkUser)
         } else {
