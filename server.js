@@ -19,17 +19,29 @@ app.get('/',function(req,res){
 });
 
 app.get('/view',function(req,res){
-    res.send('Welcome! This is Read endpoint.');
+  // res.send('Welcome! This is Read endpoint.');
+  Work.find().then(result => {
+    res.send(result);
+  })
 });
 
 app.delete('/view/:id',function(req,res){
     res.send('Welcome! This is delete endpoint.');
 });
 
-// Sophie works above this line, larissa works below below this line
-
 app.get('/add',function(req,res){
-    res.send('Welcome! This is our Create endpoint');
+    // res.send('Welcome! This is our Create endpoint');
+  const workItem = new Work({
+    id: mongoose.Schema.Types.ObjectId(),
+    workName: Stringreq.body.workName,
+    workAuthor: Stringreq.body.workAuthor,
+    workImg: Stringreq.body.workImg,
+    authorURL: Stringreq.body.authorURL
+  });
+
+  workItem.save().then(result => {
+    res.send(result);
+  }).catch(err => res.send(err));
 });
 
 app.get('/update',function(req,res){
@@ -39,6 +51,5 @@ app.get('/update',function(req,res){
 
 // Listen to port 3000
 app.listen(port, () => {
-    console.clear();
     console.log(`application is running on port ${port}`);
 });
