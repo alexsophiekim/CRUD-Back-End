@@ -29,24 +29,6 @@ app.get('/',function(req,res){
     res.send('Welcome! This is our portfolio.');
 });
 
-app.get('/view',function(req,res){
-  // res.send('Welcome! This is Read endpoint.');
-  Work.find().then(result => {
-    res.send(result);
-  })
-});
-
-app.delete('/view/:id',function(req,res){
-    res.send('Welcome! This is delete endpoint.');
-});
-
-app.get('/add', function(req,res){
-    // res.send('Welcome! This is our Create endpoint');
-  workItem.save().then(result => {
-    res.send(result);
-  }).catch(err => res.send(err));
-});
-
 app.post('/add', function(req,res){
   const workItem = new Work({
     id: mongoose.Types.ObjectId(),
@@ -59,6 +41,16 @@ app.post('/add', function(req,res){
   workItem.save().then(result => {
     res.send(result);
   }).catch(err => res.send(err));
+});
+
+app.get('/view',function(req,res){
+  Work.find().then(result => {
+    res.send(result);
+  })
+});
+
+app.delete('/view/:id',function(req,res){
+    res.send('Welcome! This is delete endpoint.');
 });
 
 app.get('/update',function(req,res){
