@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 8888;
+const port = 3000;
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+
 const config = require('./config.json');
 const Work = require('./models/work');
 
@@ -18,6 +19,11 @@ db.once('open', function() {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
+
+app.use(function(req, res, next){
+    console.log(`${req.method} request for ${req.url}`);
+    next();
+});
 
 app.get('/',function(req,res){
     res.send('Welcome! This is our portfolio.');
@@ -36,18 +42,23 @@ app.delete('/view/:id',function(req,res){
 
 app.get('/add', function(req,res){
     // res.send('Welcome! This is our Create endpoint');
+  workItem.save().then(result => {
+    res.send(result);
+  }).catch(err => res.send(err));
+});
+
+app.post('/add', function(req,res){
   const workItem = new Work({
     id: mongoose.Types.ObjectId(),
-    workName: String.req.body.workName,
-    workAuthor: String.req.body.workAuthor,
-    workImg: String.req.body.workImg,
-    authorURL: String.req.body.authorURL
+    workName: req.body.workName,
+    workAuthor: req.body.workAuthor,
+    workImg: req.body.workImg,
+    authorURL: req.body.authorURL
   });
 
-  console.log(workItem);
-  // workItem.save().then(result => {
-  //   res.send(result);
-  // }).catch(err => res.send(err));
+  workItem.save().then(result => {
+    res.send(result);
+  }).catch(err => res.send(err));
 });
 
 app.get('/update',function(req,res){
